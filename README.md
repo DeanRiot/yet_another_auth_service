@@ -1,0 +1,2 @@
+# yet_another_auth_service
+Authorization service including user notification capabilities
