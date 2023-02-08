@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Не удалось найти файл метаданных "D:\pet_projects\yet_another_auth_service\lib\email_sender\obj\Debug\net6.0\ref\Email.dll".
+dotnet_diagnostic.CS0006.severity = warning
