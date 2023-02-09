@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BaseOutputPath>D:\pet_projects\yet_another_auth_service\bin\lib\$(MSBuildProjectName)</BaseOutputPath>
   </PropertyGroup>
 
 </Project>

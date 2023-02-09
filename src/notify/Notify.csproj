@@ -6,11 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>a78151ed-358b-4629-b0f0-acf8c008f61d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <BaseOutputPath>D:\pet_projects\yet_another_auth_service\bin\services\$(MSBuildProjectName)</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
