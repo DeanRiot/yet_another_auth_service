@@ -1,17 +1,18 @@
 ﻿using Email.Data;
+using Email.Senders;
 
 namespace Email
 {
     public class Sender
     {
         private Config SENDER_CONFIG;
-        public Sender(string email, string password, string email_service)=>
-                SENDER_CONFIG = new(email_service,email,password);
-        public Sender(string email, string password, string email_service, bool USE_TLS=false) =>
-                SENDER_CONFIG = new(email_service, 
-                                    USE_TLS?(int) Data.Enums.Port.TLS :(int)Data.Enums.Port.SSL,
-                                    email, password);
-      
+        private IMailSender _sender;
+        public Sender(string email, string password, string email_service)
+        {
+            SENDER_CONFIG = new(email_service, email, password);
+            _sender = new SMTPSender(SENDER_CONFIG); 
+        }
+             
         public string Email {
             get => SENDER_CONFIG.Credentials.Email;
             set => SENDER_CONFIG.Credentials =
@@ -25,19 +26,23 @@ namespace Email
         public string EmailService
         {
             get => SENDER_CONFIG.Connection.Service;
-            set => SENDER_CONFIG.Connection =
-                    new(value, SENDER_CONFIG.Connection.Port);
+            set => SENDER_CONFIG.Connection = new(value);
         }
-        public int Port
+        public int Port 
         {
             get => SENDER_CONFIG.Connection.Port;
-            set => SENDER_CONFIG.Connection =
-                    new( SENDER_CONFIG.Connection.Service, value);
         }
 
-        public void Send()
+        public IMailSender MailSender
         {
-            
-        } 
+            get => _sender;
+            set => _sender = value;
+        }
+        public (bool status, string reason) Send(string recepilent_email, string title, string body) =>
+                        _sender.Send(recepilent_email, title, body);
+        public (bool status, string reason) Send(string recepilent_email, string body) =>
+                        _sender.Send(recepilent_email, body);
+        public (bool status, string reason) Send(string recepilent_email, Message message) =>
+                        _sender.Send(recepilent_email, message);
     }
 }

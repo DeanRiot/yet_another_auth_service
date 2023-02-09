@@ -1,3 +1,5 @@
+using Castle.Components.DictionaryAdapter.Xml;
+
 namespace EmailSenderLibTests
 {
     public class DataTests
@@ -10,27 +12,67 @@ namespace EmailSenderLibTests
         [Test]
         public void correct_data_is_saved()
         {
-            Email.Sender sender = new("test@gmail.com", "secret", Email.Data.Enums.Service.GMAIL);
+            Email.Sender sender = new("test@gmail.com", "secret", Email.Data.Enums.Service.MAIL_RU);
             Assert.That(sender.Email, Is.EqualTo("test@gmail.com"));
-            Assert.That(sender.EmailService, Is.EqualTo("smtp.gmail.com"));
-            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.SSL));
+            Assert.That(sender.EmailService, Is.EqualTo("smtp.mail.ru"));
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.DEFAULT));
         }
 
-   
 
         [Test]
-        public void TLS_connection_correct_for_google_service_only()
+        public void set_data_by_property()
         {
-            //correct entry
-            Email.Sender sender = new("test@gmail.com", "secret", Email.Data.Enums.Service.GMAIL,true);
-            Assert.That(sender.Port,Is.EqualTo((int)Email.Data.Enums.Port.TLS));
+            Sender sender = new("test@mail.ru", "secret", Email.Data.Enums.Service.MAIL_RU);
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.DEFAULT));
             
-            //incorrect entry set SLL
-            sender = new("test@mail.ru", "secret", Email.Data.Enums.Service.MAIL_RU, true);
-            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.SSL));
+            //correct set service
+            sender.EmailService = Email.Data.Enums.Service.YANDEX;
+            Assert.That(sender.EmailService, Is.EqualTo(Email.Data.Enums.Service.YANDEX));
+            
+            //incorrect set service
+            try
+            {
+                sender.EmailService = "Yandex";
+                Assert.Fail("Incorrect service set not throw exception");
+            }
+            catch { Assert.Pass(); }
 
-            sender = new("test@yandex.ru", "secret", Email.Data.Enums.Service.YANDER, true);
-            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.SSL));
+            //correct Email insert
+            sender.Email = "test@mail.ru";
+            Assert.That(sender.Email, Is.EqualTo("test@mail.ru"));
+
+            //incorrect signature
+            try
+            {
+                sender.Email = "testgmail.com";
+                Assert.Fail("Incorrect email signature not throw exception");
+            }
+            catch { Assert.Pass();}
+        }
+       [Test]
+        public void Port_set_by_service()
+        {
+            Sender sender;
+
+            //set in ctor
+            sender = new("test@yandex.ru", "secret", Email.Data.Enums.Service.YANDEX);
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.YANDEX_PORT));
+
+            sender = new("test@yandex.ru", "secret", Email.Data.Enums.Service.MAIL_RU);
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.DEFAULT));
+
+            sender = new("test@yandex.ru", "secret", Email.Data.Enums.Service.GMAIL);
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.DEFAULT));
+
+            //set by props
+            sender.EmailService = Email.Data.Enums.Service.YANDEX;
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.YANDEX_PORT));
+
+            sender.EmailService = Email.Data.Enums.Service.MAIL_RU;
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.DEFAULT));
+
+            sender.EmailService = Email.Data.Enums.Service.GMAIL;
+            Assert.That(sender.Port, Is.EqualTo((int)Email.Data.Enums.Port.DEFAULT));
         }
 
         [TestCase("")]
