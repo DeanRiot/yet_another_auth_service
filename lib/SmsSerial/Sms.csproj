@@ -7,4 +7,8 @@
     <BaseOutputPath>D:\pet_projects\yet_another_auth_service\bin\lib\$(MSBuildProjectName)</BaseOutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>
