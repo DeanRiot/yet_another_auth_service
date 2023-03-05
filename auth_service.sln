@@ -3,26 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "src\auth\Auth.csproj", "{DC4F80B9-FD1B-41DB-8262-43A3C6DC78F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "src\auth\Auth.csproj", "{DC4F80B9-FD1B-41DB-8262-43A3C6DC78F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notify", "src\notify\Notify.csproj", "{2F43F74A-538B-459F-AA70-E9938E764984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notify", "src\notify\Notify.csproj", "{2F43F74A-538B-459F-AA70-E9938E764984}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{DE415006-38BC-4399-A434-82B75A391189}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{D484EBB2-75D3-4FF9-A287-E8C2FBCB3FD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "lib\email_sender\Email.csproj", "{84A94B36-788F-48C8-BA76-B03A70D8A8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Email", "lib\email_sender\Email.csproj", "{84A94B36-788F-48C8-BA76-B03A70D8A8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsSerial", "lib\SmsSerial\SmsSerial.csproj", "{5D381532-D846-470D-B546-407ED7EE6F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sms", "lib\SmsSerial\Sms.csproj", "{5D381532-D846-470D-B546-407ED7EE6F7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EA12FF21-B0AC-4822-AC24-B404259F549B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsSerialLibTests", "test\SmsSerialLibTests\SmsSerialLibTests.csproj", "{7B3F4644-1FB4-4688-B23A-2EEE2C1E2BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsSerialLibTests", "test\SmsSerialLibTests\SmsSerialLibTests.csproj", "{7B3F4644-1FB4-4688-B23A-2EEE2C1E2BE7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5D381532-D846-470D-B546-407ED7EE6F7A} = {5D381532-D846-470D-B546-407ED7EE6F7A}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthTests", "test\AuthTests\AuthTests.csproj", "{7F3056A7-20F1-40B9-9890-88CAA1206DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthTests", "test\AuthTests\AuthTests.csproj", "{7F3056A7-20F1-40B9-9890-88CAA1206DA9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DC4F80B9-FD1B-41DB-8262-43A3C6DC78F4} = {DC4F80B9-FD1B-41DB-8262-43A3C6DC78F4}
 	EndProjectSection

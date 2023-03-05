@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\lib\email_sender\Email.csproj" />
+    <ProjectReference Include="..\AuthTests\AuthTests.csproj" />
   </ItemGroup>
 
 </Project>

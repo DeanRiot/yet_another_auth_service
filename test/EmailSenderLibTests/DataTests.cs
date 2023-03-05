@@ -1,5 +1,3 @@
-using Castle.Components.DictionaryAdapter.Xml;
-
 namespace EmailSenderLibTests
 {
     public class DataTests
