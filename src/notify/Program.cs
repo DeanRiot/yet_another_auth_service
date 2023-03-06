@@ -1,9 +1,19 @@
-namespace notify
+using Microsoft.EntityFrameworkCore;
+using Notify.Models.Database;
+
+namespace Notify
 {
     public class Program
     {
+        static string? _connectionString = 
+                      Environment.GetEnvironmentVariable("NOTIFY_CONNECTION");
         public static void Main(string[] args)
         {
+            if (_connectionString is null)
+            {
+                Console.WriteLine("DB CONNECTION FAIL");
+                return;
+            }
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -12,6 +22,10 @@ namespace notify
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<AuthContext>(
+                                        options => options
+                                        .UseNpgsql(builder.Configuration
+                                        .GetConnectionString(_connectionString)));
 
             var app = builder.Build();
 
@@ -25,7 +39,6 @@ namespace notify
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
