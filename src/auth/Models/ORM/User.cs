@@ -1,4 +1,7 @@
-﻿namespace Notify.Models.Database;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Auth.Models.ORM;
 
 public partial class User
 {
@@ -16,6 +19,7 @@ public partial class User
 
     public DateOnly? Birthday { get; set; }
 
-    public virtual ICollection<Contact> Contacts { get; } = new List<Contact>();
+    public virtual ICollection<Auth> Auths { get; } = new List<Auth>();
 
+    public virtual ICollection<Picture> Pictures { get; } = new List<Picture>();
 }

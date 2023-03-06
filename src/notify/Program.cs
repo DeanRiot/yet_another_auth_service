@@ -23,9 +23,8 @@ namespace Notify
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AuthContext>(
-                                        options => options
-                                        .UseNpgsql(builder.Configuration
-                                        .GetConnectionString(_connectionString)));
+                                                options => options
+                                                .UseNpgsql(_connectionString));
 
             var app = builder.Build();
 
